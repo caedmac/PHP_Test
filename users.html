@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LMS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="web/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+</head>
+<body>
+<br /><br />
+<div class="container">
+    <h1 align="center">User List</h3><br />
+        </h3><br />
+        <table id="data-table" class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Group</th>
+            </tr>
+            </thead>
+        </table>
+</div>
+</body>
+<footer>
+    <div align="center">
+        <a id="logout" class="btn btn-orange btn-md">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+    </div>
+</footer>
+</html>
+<script>
+    $(document).ready(function(){
+        console.log(document.cookie);
+        $.ajax({
+            type: "get",
+            url: './api/validate.php',
+            success: function(response)
+            {
+                if(response==='noSession'){
+                    console.log('69');
+                    window.location = 'http://localhost/knowlegetest/index.html';
+                }
+
+            }
+        });
+        $('#data-table').DataTable({
+            pageLength : 5,
+            "ajax"    :{
+                type: 'GET',
+                url:'./api/users.php',
+            },
+            "columns"     :     [
+                {     "data"     :     "id"},
+                {     "data"     :     "name"},
+                {     "data"     :     "email"},
+                {     "data"     :     "group_name"},
+            ]
+        });
+
+        $('#logout').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "DELETE",
+                url: './api/logout.php',
+                success: function(response)
+                {
+                    if (response === 'LogOut') {
+                        window.location = 'index.html';
+                    }
+                }
+            });
+        });
+    });
+</script>

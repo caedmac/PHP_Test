@@ -1,0 +1,70 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+    font-family: 'Numans', sans-serif;
+}
+
+.container{
+    height: 100%;
+    align-content: center;
+}
+
+.card{
+    height: 450px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 450px;
+    align-self: center;
+}
+
+.card-text{
+    font-size: x-small;
+}
+
+.input-group-prepend span{
+    width: 50px;
+    background-color: lightgray;
+    color: black;
+    border:0 !important;
+    border-radius: 10px;
+}
+
+input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+
+}
+
+.input-rounded{
+    border-radius: 10px;
+}
+
+.remember{
+    color: black;
+}
+
+.remember input
+{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login_btn{
+    color: black;
+    background-color: darkorange;
+    width: 100px;
+    border-radius: 7px;
+}
+
+.login_btn:hover{
+    color: black;
+    background-color: lightgray !important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: darkorange !important;
+}
